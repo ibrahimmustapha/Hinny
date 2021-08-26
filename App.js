@@ -16,22 +16,22 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import Authentication from './src/components/Authentication';
+import OnBoardScreen from './src/components/OnBoardScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import SlideScreen from './src/components/SlideScreen';
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <SlideScreen />
-    </View>
-  )
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="OnBoardScreen" component={OnBoardScreen} />
+        <Stack.Screen name="Authentication" component={Authentication} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 export default App;
