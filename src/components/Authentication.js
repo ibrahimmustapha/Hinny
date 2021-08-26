@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, SafeAreaView, StatusBar, TextInput, ScrollView } from 'react-native';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, Text, StyleSheet, Image, SafeAreaView, StatusBar, TextInput, ScrollView, Pressable } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../assets/colors/colors';
 
-const SlideScreen = () => {
+const SlideScreen = ({ navigation }) => {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
         <ScrollView>
@@ -21,9 +21,10 @@ const SlideScreen = () => {
                     Register Here
                   </Text>
                 </View>
-                <Text style={{paddingVertical: 7, color: Colors.blue}}>
+                <Text style={{paddingVertical: 7, color: Colors.blue, marginRight: -160}}>
                   Help
                 </Text>
+                <Icon style={{paddingVertical: 4}}name="help" size={25} color={Colors.blue} />
               </View>
             </View>
             <View style={{marginLeft: 20, marginTop: 20}}>
@@ -31,7 +32,17 @@ const SlideScreen = () => {
                 Phone Number
               </Text>
               <View style={styles.contactContainer}>
-                <TextInput placeholder="Eg. 47812542" />
+                <Text>+81</Text>
+                <Icon
+                  name="keyboard-arrow-down"
+                  size={25}
+                  color={Colors.dark}
+                />
+                <TextInput
+                  keyboardType="numeric"
+                  maxLength={10}
+                  placeholder="Eg. 47812542"
+                />
               </View>
             </View>
             <View style={{marginLeft: 20, marginTop: 20}}>
@@ -39,33 +50,31 @@ const SlideScreen = () => {
                 Full Name
               </Text>
               <View style={styles.contactContainer}>
+                <Icon name="person-outline" size={25} color={Colors.dark} />
                 <TextInput placeholder="Steve Jobs" />
               </View>
             </View>
-            <View style={{marginLeft: 20, marginTop: 20}}>
-              <Text style={{color: Colors.grey, paddingBottom: 10}}>
-                Gender
-              </Text>
-              <View style={styles.contactContainer}>
-                <TextInput placeholder="Male or Female" />
-              </View>
-            </View>
-            <View style={{marginLeft: 20, marginTop: 20}}>
+            <View style={{marginLeft: 20, marginTop: 20}}></View>
+            <View style={{marginLeft: 20, marginTop: 0}}>
               <Text style={{color: Colors.grey, paddingBottom: 10}}>
                 Password
               </Text>
-              <TextInput placeholder="********" />
-            </View>
-            <View style={{marginLeft: 20, marginTop: 20}}>
-              <Text style={{color: Colors.grey, paddingBottom: 10}}>
-                Confirm Password
-              </Text>
-              <TextInput placeholder="********" />
+              <View style={styles.contactContainer}>
+                <Icon name="lock-outline" size={25} color={Colors.dark} />
+                <TextInput secureTextEntry={true} placeholder="********" />
+              </View>
             </View>
           </View>
-          <View style={styles.registerButtonContainer}>
-            <Text style={styles.registerButton}>Complete Registration</Text>
-          </View>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('CompleteRegisteration', {
+                name: 'CompleteRegisteration',
+              })
+            }>
+            <View style={styles.registerButtonContainer}>
+              <Text style={styles.registerButton}>Continue</Text>
+            </View>
+          </Pressable>
         </ScrollView>
       </SafeAreaView>
     );
@@ -91,7 +100,10 @@ const styles = StyleSheet.create({
     height: 50,
     marginRight: 20,
     flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: Colors.light,
+    paddingLeft: 10,
+    borderColor: Colors.dark,
   },
   registerButtonContainer: {
     backgroundColor: Colors.blue,
@@ -101,6 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     marginBottom: 10,
+    marginTop: 20,
   },
   registerButton: {
     color: Colors.white,

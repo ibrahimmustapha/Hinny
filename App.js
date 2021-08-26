@@ -1,7 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
+/*
  * @format
  * @flow strict-local
  */
@@ -18,6 +15,7 @@ import {
 } from 'react-native';
 import Authentication from './src/components/Authentication';
 import OnBoardScreen from './src/components/OnBoardScreen';
+import CompleteRegisteration from './src/components/CompleteRegisteration';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -29,6 +27,7 @@ const App = () => {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="OnBoardScreen" component={OnBoardScreen} />
         <Stack.Screen name="Authentication" component={Authentication} />
+        <Stack.Screen name="CompleteRegisteration" component={CompleteRegisteration} />
       </Stack.Navigator>
     </NavigationContainer>
   );
