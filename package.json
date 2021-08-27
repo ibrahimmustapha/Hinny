@@ -12,16 +12,22 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@react-navigation/bottom-tabs": "^6.0.5",
+    "@react-navigation/material-bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "npx": "^10.2.2",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-paper": "^4.9.2",
     "react-native-radio-buttons-group": "^2.2.5",
     "react-native-safe-area-context": "^3.3.0",
     "react-native-screens": "^3.6.0",
     "react-native-vector-icons": "^8.1.0",
-    "react-scripts": "3.4.4"
+    "react-native-voice": "^0.3.0",
+    "react-navigation-material-bottom-tabs": "^2.3.4",
+    "react-scripts": "3.4.4",
+    "react-speech-recognition": "^3.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

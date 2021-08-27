@@ -1,9 +1,73 @@
-import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Image, StatusBar, TextInput, ScrollView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, Text, SafeAreaView, StyleSheet, Image, StatusBar, TextInput, ScrollView, Pressable} from 'react-native';
 import Colors from '../assets/colors/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Voice from 'react-native-voice';
 
-const CompleteRegisteration =() => {
+const CompleteRegisteration =( { navigation } ) => {
+
+const [pitch, setPitch] = useState('');
+const [error, setError] = useState('');
+const [end, setEnd] = useState('');
+const [started, setStarted] = useState('');
+const [results, setResults] = useState('');
+const [partialResults, setPartialResults] = useState([]);
+
+useEffect(() => {
+  Voice._onSpeechStart = onSpeechStart;
+  Voice._onSpeechEnd = onSpeechEnd;
+  Voice.onSpeechError = onSpeechError;
+  Voice.onSpeechResults = onSpeechResults;
+  Voice.onSpeechPartialResults = onSpeechPartialResults;
+
+  return () => {
+    Voice.destroy().then(Voice.removeAllListeners);
+  }
+}, []);
+
+const onSpeechStart = (e) => {
+  console.log('onSpeechStart', e);
+  setStarted('worked');
+}
+
+ const onSpeechEnd = e => {
+   //Invoked when SpeechRecognizer stops recognition
+   console.log('onSpeechEnd: ', e);
+   setEnd('√');
+ };
+
+ const onSpeechError = e => {
+   //Invoked when an error occurs.
+   console.log('onSpeechError: ', e);
+   setError(JSON.stringify(e.error));
+ };
+
+ const onSpeechResults = e => {
+   //Invoked when SpeechRecognizer is finished recognizing
+   console.log('onSpeechResults: ', e);
+   setResults(e.value);
+ };
+
+ const onSpeechPartialResults = e => {
+   //Invoked when any results are computed
+   console.log('onSpeechPartialResults: ', e);
+   setPartialResults(e.value);
+ };
+
+const startRecording = async () => {
+  try {
+    await Voice.start('en-US');
+    setPitch('');
+    setError('');
+    setStarted('');
+    setResults('');
+    setPartialResults('');
+    setEnd('');
+  } catch (e) {
+    console.error(e);
+  }
+}
+
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
         <StatusBar translucent={true} backgroundColor={Colors.transparent} />
@@ -55,18 +119,27 @@ const CompleteRegisteration =() => {
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  marginTop: 10, backgroundColor: Colors.light, padding: 15
+                  marginTop: 10,
+                  backgroundColor: Colors.light,
+                  padding: 15,
                 }}>
                 <Text>Voice recognition for emergencies</Text>
-                <View style={styles.voiceButtonContainer}>
-                  <Icon name="keyboard-voice" size={30} color={Colors.red} />
+                <Pressable onPress={startRecording}>
+                  <View style={styles.voiceButtonContainer}>
+                    <Icon name="keyboard-voice" size={30} color={Colors.red} />
+                  </View>
+                </Pressable>
+              </View>
+              <Pressable
+                onPress={() =>
+                  navigation.navigate('HomeScreen', {name: 'HomeScreen'})
+                }>
+                <View style={styles.registerButtonContainer}>
+                  <Text style={{color: Colors.white, fontSize: 16}}>
+                    Complete Registration
+                  </Text>
                 </View>
-              </View>
-              <View style={styles.registerButtonContainer}>
-                <Text style={{color: Colors.white, fontSize: 16}}>
-                  Complete Registration
-                </Text>
-              </View>
+              </Pressable>
             </View>
           </View>
         </ScrollView>
