@@ -21,10 +21,12 @@ const SlideScreen = ({ navigation }) => {
                     Register Here
                   </Text>
                 </View>
-                <Text style={{paddingVertical: 7, color: Colors.blue, marginRight: -160}}>
+                <View style={{flexDirection: 'row'}}>
+                <Text style={{paddingVertical: 7, color: Colors.blue,}}>
                   Help
-                </Text>
+                </Text >
                 <Icon style={{paddingVertical: 4}}name="help" size={25} color={Colors.blue} />
+                </View>
               </View>
             </View>
             <View style={{marginLeft: 20, marginTop: 20}}>

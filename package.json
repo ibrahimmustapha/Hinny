@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.4",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@react-navigation/bottom-tabs": "^6.0.5",
@@ -19,6 +20,7 @@
     "npx": "^10.2.2",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-maps": "0.28.0",
     "react-native-paper": "^4.9.2",
     "react-native-radio-buttons-group": "^2.2.5",
     "react-native-safe-area-context": "^3.3.0",

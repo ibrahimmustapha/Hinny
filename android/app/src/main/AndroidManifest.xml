@@ -2,7 +2,9 @@
   package="com.hinny">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <application
       android:name=".MainApplication"
@@ -22,5 +24,9 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+         <meta-data
+         android:name="com.google.android.geo.API_KEY"
+         android:value="AIzaSyAZCYwoUUS8Y0CQzhwk-F7ah2kkPhfs8Cw"/>
+          <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 </manifest>
