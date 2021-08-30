@@ -123,9 +123,7 @@ const startRecording = async () => {
                   backgroundColor: Colors.light,
                   padding: 15,
                 }}>
-                {results.map((result, index) => (
-                  <Text key={index}>Voice recognition for emergencies: {result} </Text>
-                ))}
+                <Text>Voice recognition for emergencies:</Text>
                 <Pressable onLongPress={startRecording}>
                   <View style={styles.voiceButtonContainer}>
                     <Icon name="keyboard-voice" size={30} color={Colors.red} />
